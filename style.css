@@ -1,0 +1,42 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.frame {
+  display:flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 300px;
+  background-color:lightgrey;
+  padding:30px;
+}
+
+table {
+  padding: 0px;
+  margin: 0px;
+  border-collapse: collapse;
+}
+
+button {
+  height: 100%;
+  width: 100%;
+}
+
+.buttons {
+  border: 1px solid black;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.display {
+  background-color:white;
+  padding-right: 20px;
+  text-align: right;
+}
