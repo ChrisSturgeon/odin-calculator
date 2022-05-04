@@ -13,10 +13,10 @@
     <div class="frame">
       <table class="buttons">
         <tr>
-          <td colspan="4" class="display">Display Here</td>
+          <td colspan="4" id="display">Display Here</td>
         </tr>
         <tr>
-          <td colspan="3"><button>Clear</button></td>
+          <td colspan="3" onclick="clearDisplay()"><button>Clear</button></td>
           <td><button>÷</button></td>
         </tr>
         <tr>
@@ -32,15 +32,15 @@
           <td><button>-</button></td>
         </tr>
         <tr>
-          <td><button>1</button></td>
-          <td><button>2</button></td>
-          <td><button>3</button></td>
-          <td><button>+</button></td>
+          <td><button value ="1" onclick="updateDisplay(this.value)">1</button></td>
+          <td><button value ="2" onclick="updateDisplay(this.value)">2</button></td>
+          <td><button value ="3" onclick="updateDisplay(this.value)">3</button></td>
+          <td><button value="add" onclick="selectOperator(this.value)">+</button></td>
         </tr>
         <tr>
           <td colspan="2"><button>0</button></td>
           <td><button>.</button></td>
-          <td><button>=</button></td>
+          <td><button onclick="equals()">=</button></td>
           
         </tr>
 

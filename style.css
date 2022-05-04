@@ -23,7 +23,7 @@ table {
   border-collapse: collapse;
 }
 
-button {
+button, input {
   height: 100%;
   width: 100%;
 }
@@ -35,7 +35,7 @@ button {
   height: 100%;
 }
 
-.display {
+#display {
   background-color:white;
   padding-right: 20px;
   text-align: right;
