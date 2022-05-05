@@ -13,34 +13,34 @@
     <div class="frame">
       <table class="buttons">
         <tr>
-          <td colspan="4" id="display">Display Here</td>
+          <td colspan="4" id="display"></td>
         </tr>
         <tr>
           <td colspan="3" onclick="clearDisplay()"><button>Clear</button></td>
           <td><button>÷</button></td>
         </tr>
         <tr>
-          <td><button>7</button></td>
-          <td><button>8</button></td>
-          <td><button>9</button></td>
-          <td><button>x</button></td>
+          <td><button value ="7" onclick="updateDisplay(this.value)">7</button></td>
+          <td><button value ="8" onclick="updateDisplay(this.value)">8</button></td>
+          <td><button value ="9" onclick="updateDisplay(this.value)">9</button></td>
+          <td><button id="multiply">x</button></td>
         </tr>
         <tr>
-          <td><button>4</button></td>
-          <td><button>5</button></td>
-          <td><button>6</button></td>
-          <td><button>-</button></td>
+          <td><button value ="4" onclick="updateDisplay(this.value)">4</button></td>
+          <td><button value ="5" onclick="updateDisplay(this.value)">5</button></td>
+          <td><button value ="6" onclick="updateDisplay(this.value)">6</button></td>
+          <td><button id="subtract">-</button></td>
         </tr>
         <tr>
           <td><button value ="1" onclick="updateDisplay(this.value)">1</button></td>
           <td><button value ="2" onclick="updateDisplay(this.value)">2</button></td>
           <td><button value ="3" onclick="updateDisplay(this.value)">3</button></td>
-          <td><button value="add" onclick="selectOperator(this.value)">+</button></td>
+          <td><button id="add">+</button></td>
         </tr>
         <tr>
-          <td colspan="2"><button>0</button></td>
+          <td colspan="2"><button value ="0" onclick="updateDisplay(this.value)">0</button></td>
           <td><button>.</button></td>
-          <td><button onclick="equals()">=</button></td>
+          <td><button id="equals">=</button></td>
           
         </tr>
 

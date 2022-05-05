@@ -47,34 +47,39 @@ function updateDisplay(input) {
   display.innerText = displayValue;
 }
 
-function selectOperator(input) {
-  operator = input;
+function saveValue1() {
   storedValue1 = Number(displayValue);
-  console.log(`Selected operator: ${operator}`);
-  console.log(`Stored value 1: ${storedValue1}`);
   displayValue = 0;
-  console.log(`Display Value now ${displayValue}`);
 }
 
-function greet() {
-  console.log("Hello")
+function selectAdd() {
+  operator = add;
+  saveValue1();
+}
+
+function selectSubtract() {
+  operator = subtract;
+  saveValue1();
+}
+
+function selectMultiply() {
+  operator = multiply;
+  saveValue1();
 }
 
 function equals() {
   storedValue2 = Number(displayValue);
-  if (operator === "add") {
-    console.log(operate(add, storedValue1, storedValue2));
-  }
-  console.log(`Stored value 1 : ${storedValue1}`)
-  console.log(`Stored value 2: ${storedValue2}`);
-  console.log(`Operator: ${typeof(operator)}`);
-  // console.log(operate(operator, storedValue1, storedValue2));
-
+  var result = operate(operator, storedValue1, storedValue2)
+  console.log(result);
+  displayValue = result;
+  display.innerText = result;
 }
 
-console.log(operate(add, 2 , 5));
+document.getElementById('equals').addEventListener('click', equals);
+document.getElementById('add').addEventListener('click', selectAdd);
+document.getElementById('subtract').addEventListener('click', selectSubtract);
+document.getElementById('multiply').addEventListener('click', selectMultiply);
 
-console.log(typeof(add(2 ,4)));
 
 
 
