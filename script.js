@@ -26,7 +26,7 @@ var displayValue = 0;
 var storedValue1 = 0;
 var operator;
 var storedValue2 = 0;
-
+var inputArray = [];
 
 // Clear inputs
 
@@ -44,7 +44,6 @@ display.innerText = displayValue;
 function updateDisplay(input) {
   console.log(input);
   displayValue += input;
-  display.innerText = displayValue;
 }
 
 function saveValue1() {
@@ -68,17 +67,40 @@ function selectMultiply() {
 }
 
 function equals() {
-  storedValue2 = Number(displayValue);
-  var result = operate(operator, storedValue1, storedValue2)
-  console.log(result);
-  displayValue = result;
-  display.innerText = result;
+
 }
 
-document.getElementById('equals').addEventListener('click', equals);
-document.getElementById('add').addEventListener('click', selectAdd);
-document.getElementById('subtract').addEventListener('click', selectSubtract);
-document.getElementById('multiply').addEventListener('click', selectMultiply);
+// document.getElementById('equals').addEventListener('click', equals);
+// document.getElementById('add').addEventListener('click', selectAdd);
+// document.getElementById('subtract').addEventListener('click', selectSubtract);
+// document.getElementById('multiply').addEventListener('click', selectMultiply);
+// document.getElementById('log').addEventListener('click', logArray);
+// document.getElementById('execute').addEventListener('click', execute);
+
+var operators = [divide, add, subtract];
+var totalNumbers = [27, 8, 43, 6];
+
+for (let i = operators.length - 1 ; i >= 0; i--) {
+
+var tempNumbers = [totalNumbers[0], totalNumbers[1]];
+var tempOperator = operators[0];
+var tempResult = tempNumbers.reduce(tempOperator);
+operators.shift();
+totalNumbers.splice(0, 2, tempResult);
+}
+
+console.log(totalNumbers[0]);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
