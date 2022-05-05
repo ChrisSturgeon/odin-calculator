@@ -1,5 +1,4 @@
-// Define operational functions
-
+// Opearand functions
 function add(a, b) {
   return a + b;
 }
@@ -16,37 +15,28 @@ function divide(a, b) {
   return a / b;
 }
 
-// Define operate function. 
-
-function operate(operation, a, b) {
-  return operation(a, b);
-}
-
+// Create arrays and initial conditions, one array to store operands
+// another array to store operators
 var displayValue = "";
-var storedValue1 = 0;
-var operator;
-var storedValue2 = 0;
-var inputArray = [];
+var operators = [];
+var totalNumbers = [];
+const display = document.getElementById("display");
+
 
 // Clear inputs
-
 function clear() {
   displayValue = "";
   display.innerText = "0";
   operators = [];
   totalNumbers = [];
-  
 }
-
-
-const display = document.getElementById("display");
-
 
 function updateDisplay(input) {
   displayValue += input;
   display.innerText = displayValue;
 }
 
+// Button functions
 function addNumber() {
   if (displayValue.length != 0 && displayValue != "0") {
     totalNumbers.push(Number(displayValue));
@@ -79,27 +69,24 @@ function invert() {
   display.innerText = displayValue;
 }
 
-document.getElementById('clear').addEventListener('click', clear);
-document.getElementById('equals').addEventListener('click', equals);
-document.getElementById('add').addEventListener('click', selectAdd);
-document.getElementById('subtract').addEventListener('click', selectSubtract);
-document.getElementById('multiply').addEventListener('click', selectMultiply);
-document.getElementById('divide').addEventListener('click', selectDivide);
-document.getElementById('invert').addEventListener('click', invert);
-
-var operators = [];
-var totalNumbers = [];
+function percentage () {
+  displayValue *= 0.01;
+  display.innerText = displayValue;
+}
 
 function equals() {
+
+  // Add last number to array to complete number/operator/number trio. 
   addNumber();
 
-  console.log("--- Inputs ---")
-  console.log(`totalNumbers: ${totalNumbers}`);
-  console.log(`Operators: ${operators}`);
-  console.log(`Display Value: ${displayValue}`);
-  
-  if (totalNumbers.length - operators.length === 1) {
+  // Check there's one more operand than operator before executing loop.
+  // Loop takes first two operads from numbers array, and computes them using
+  // first operator (i.e. number/operator/number trio). 
+  // Result is spliced into beginning of numbers array, replacing originals.
+  // Used operator is removed from array. 
+  // Repeat until no more operators remaining. 
 
+  if (totalNumbers.length - operators.length === 1) {
     for (let i = operators.length - 1 ; i >= 0; i--) {
       var tempNumbers = [totalNumbers[0], totalNumbers[1]];
       var tempOperator = operators[0];
@@ -108,14 +95,18 @@ function equals() {
       totalNumbers.splice(0, 2, tempResult);
       display.innerText = totalNumbers;
     }
-    console.log("--- First ---")
-    console.log(`Answer is ${totalNumbers}`);
-    console.log(`totalNumbers: ${totalNumbers}`);
-    console.log(`Operators: ${operators}`);
-    console.log(`Display Value: ${displayValue}`);
-    
   }
 }
+
+// Add Button Event Listeners
+document.getElementById('clear').addEventListener('click', clear);
+document.getElementById('equals').addEventListener('click', equals);
+document.getElementById('add').addEventListener('click', selectAdd);
+document.getElementById('subtract').addEventListener('click', selectSubtract);
+document.getElementById('multiply').addEventListener('click', selectMultiply);
+document.getElementById('divide').addEventListener('click', selectDivide);
+document.getElementById('percentage').addEventListener('click', percentage);
+document.getElementById('invert').addEventListener('click', invert);
 
 
 
