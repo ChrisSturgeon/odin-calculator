@@ -19,7 +19,8 @@ function divide(a, b) {
 // another array to store operators
 var displayValue = "";
 var operators = [];
-var totalNumbers = [];
+var totalNumbers = []
+const calcDisplay = document.getElementById("calc");
 const display = document.getElementById("display");
 
 // Clear inputs
@@ -28,6 +29,7 @@ function clear() {
   display.innerText = "0";
   operators = [];
   totalNumbers = [];
+  calcDisplay.innerText = "0";
 }
 
 function updateDisplay(input) {
@@ -46,21 +48,25 @@ function addNumber() {
 function selectAdd() {
   addNumber();
   operators.push(add);
+  calc();
 }
 
 function selectSubtract() {
   addNumber();
   operators.push(subtract);
+  calc();
 }
 
 function selectMultiply() {
   addNumber();
   operators.push(multiply);
+  calc();
 }
 
 function selectDivide() {
   addNumber();
   operators.push(divide);
+  calc();
 }
 
 function invert() {
@@ -74,15 +80,17 @@ function percentage () {
 }
 
 function backSpace() {
-  displayValue.slice(displayValue.length - 1, 1);
-  displayValue = 0;
-  display.innerText = displayValue;
+  if (displayValue.length != "") {
+    displayValue = displayValue.slice(0, displayValue.length - 1);
+    display.innerText = displayValue;
+  }
 }
 
 function equals() {
 
   // Add last number to array to complete number/operator/number trio. 
   addNumber();
+  calc();
 
   // Check there's one more operand than operator before executing loop.
   // Loop takes first two operads from numbers array, and computes them using
@@ -118,31 +126,77 @@ document.getElementById('backspace').addEventListener('click', backSpace);
 // Keyboard Input  
 document.addEventListener("keypress", (event) => {
   var name = event.key;
+  const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+              "+", "-", "*", "/", "Enter"];
 
-  switch (name) {
-    case "+":
-      selectAdd();
-      break;
-    case "-":
-      selectSubtract();
-      break;
-    case "*":
-      selectMultiply();
-      break;
-    case "/":
-      selectDivide();
-      break;
-    case "=":
-      equals();
-      break;
-    case "Enter":
-      equals();
-      break;
-    default: 
-      displayValue += name;
-      display.innerText = displayValue
+  if (keys.includes(name)) {
+    switch (name) {
+      case "+":
+        selectAdd();
+        break;
+      case "-":
+        selectSubtract();
+        break;
+      case "*":
+        selectMultiply();
+        break;
+      case "/":
+        selectDivide();
+        break;
+      case "=":
+        equals();
+        break;
+      case "Enter":
+        equals();
+        break;
+      default: 
+        displayValue += name;
+        display.innerText = displayValue
+    }
   }
 });
+
+// Show calculation in progress
+function calc() {
+  var stringOperators = [];
+  var stringCalc = [];
+
+  for (let i = 0; i <= operators.length - 1; i++) {
+    switch (operators[i]) {
+      case add:
+        stringOperators.push("+");
+        break;
+      case subtract:
+        stringOperators.push("-");
+        break;
+      case multiply:
+        stringOperators.push("x");
+        break;
+      case divide:
+        stringOperators.push("/");
+        break;
+    } 
+  }
+
+  for (let i = 0; i <= totalNumbers.length - 1; i++) {
+    stringCalc.push(totalNumbers[i]);
+    if (i != totalNumbers.length - 1) {
+      stringCalc.push(stringOperators[i])
+    }
+  }
+  var calculation = stringCalc.toString().replaceAll(",", " ");
+  calcDisplay.innerText = calculation;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
