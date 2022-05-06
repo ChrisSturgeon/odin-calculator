@@ -22,7 +22,6 @@ var operators = [];
 var totalNumbers = [];
 const display = document.getElementById("display");
 
-
 // Clear inputs
 function clear() {
   displayValue = "";
@@ -74,6 +73,12 @@ function percentage () {
   display.innerText = displayValue;
 }
 
+function backSpace() {
+  displayValue.slice(displayValue.length - 1, 1);
+  displayValue = 0;
+  display.innerText = displayValue;
+}
+
 function equals() {
 
   // Add last number to array to complete number/operator/number trio. 
@@ -107,6 +112,37 @@ document.getElementById('multiply').addEventListener('click', selectMultiply);
 document.getElementById('divide').addEventListener('click', selectDivide);
 document.getElementById('percentage').addEventListener('click', percentage);
 document.getElementById('invert').addEventListener('click', invert);
+document.getElementById('backspace').addEventListener('click', backSpace);
+
+
+// Keyboard Input  
+document.addEventListener("keypress", (event) => {
+  var name = event.key;
+
+  switch (name) {
+    case "+":
+      selectAdd();
+      break;
+    case "-":
+      selectSubtract();
+      break;
+    case "*":
+      selectMultiply();
+      break;
+    case "/":
+      selectDivide();
+      break;
+    case "=":
+      equals();
+      break;
+    case "Enter":
+      equals();
+      break;
+    default: 
+      displayValue += name;
+      display.innerText = displayValue
+  }
+});
 
 
 
