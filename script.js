@@ -15,6 +15,11 @@ function divide(a, b) {
   return a / b;
 }
 
+function operate(operator, a , b) {
+  return operator(a, b);
+}
+
+
 // Create arrays and initial conditions, one array to store operands
 // another array to store operators
 var displayValue = "";
@@ -187,6 +192,9 @@ function calc() {
   var calculation = stringCalc.toString().replaceAll(",", " ");
   calcDisplay.innerText = calculation;
 }
+
+
+
 
 
 
